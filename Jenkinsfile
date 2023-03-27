@@ -8,7 +8,7 @@ pipeline{
         stage('Scan') {
             steps{
                 withSonarQubeEnv(installationName: 'SonarQubeScanner') {
-                    sh 'mvn clean verify -D sonar.login=squ_6a8710329c4d384a4451159d6e557b9eda79f9d3'
+                    sh 'mvn clean verify'
                 }
             }
         }

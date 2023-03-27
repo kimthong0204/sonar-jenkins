@@ -2,7 +2,7 @@ pipeline{
     agent any
     tools {
         maven 'maven-3.8.6'
-        jdk 'jdk17'
+        jdk 'JAVA_HOME'
     }
     stages{
         stage('Scan') {

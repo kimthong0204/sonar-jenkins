@@ -29,6 +29,11 @@
 // }
 
 node {
+tools {
+         maven 'maven-3.8.6'
+         jdk 'JAVA_HOME'
+    }
+
   stage('SCM') {
     checkout scm
   }

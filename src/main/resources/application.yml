@@ -1,0 +1,24 @@
+server:
+  port: 8080
+
+logging:
+  level:
+    org.springframework.web: ERROR
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type: TRACE
+
+spring:
+  jpa:
+    hibernate.use-new-id-generator-mappings: false
+    hibernate.ddl-auto: update
+
+  datasource:
+    hikari.connectionTimeout: 20000
+    hikari.maximumPoolSize: 5
+    hikari.poolName: HikariPoolZZZ
+    url: jdbc:postgresql://localhost:5432/demo
+    username: postgres
+    password: Admin@123
+
+jwt:
+  secret_key: 566D597133743677397A24432646294A404D635166546A576E5A723475377821

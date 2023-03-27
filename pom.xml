@@ -17,9 +17,9 @@
         <java.version>17</java.version>
         <junit-jupiter.version>5.3.2</junit-jupiter.version>
         <mockito.version>5.1.1</mockito.version>
-        <sonar.host.url>http://localhost:9000</sonar.host.url>
-        <sonar.login>squ_6a8710329c4d384a4451159d6e557b9eda79f9d3</sonar.login>
-        <sonar.projectKey>SonarQubeScanner</sonar.projectKey>
+<!--        <sonar.host.url>http://localhost:9000</sonar.host.url>-->
+<!--        <sonar.login>squ_6a8710329c4d384a4451159d6e557b9eda79f9d3</sonar.login>-->
+<!--        <sonar.projectKey>SonarQubeScanner</sonar.projectKey>-->
     </properties>
     <dependencies>
         <!-- spring mvc, rest -->

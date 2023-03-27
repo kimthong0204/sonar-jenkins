@@ -7,23 +7,13 @@ pipeline{
     options {
         buildDiscarder(logRotator(numToKeepStr: '5'))
     }
-
-    node{
-    stage('SCM') {
-        checkout scm
-      }
-      stage('SonarQube Analysis') {
-        def mvn = tool 'Default Maven';
-        withSonarQubeEnv() {
-          sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=test"
+    stages{
+        stage('Scan') {
+            steps{
+                withSonarQubeEnv(installationName: 'sq1') {
+                    sh 'mvn clean verify'
+                }
+            }
         }
-      }
-//         stage('Scan') {
-//             steps{
-//                 withSonarQubeEnv(installationName: 'sq1') {
-//                     sh 'mvn clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar'
-//                 }
-//             }
-//         }
     }
 }

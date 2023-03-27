@@ -8,7 +8,7 @@ pipeline{
         stage('Scan') {
             steps{
                 withSonarQubeEnv(installationName: 'SonarQubeScanner') {
-                    sh 'mvn clean verify -D sonar.host.url=http://localhost:9000 -D sonar.login=squ_6a8710329c4d384a4451159d6e557b9eda79f9d3 -D sonar.projectKey=SonarqubeScanner'
+                    sh 'mvn clean verify -D sonar.host.url=http://127.0.0.1:9000 -D sonar.login=squ_6a8710329c4d384a4451159d6e557b9eda79f9d3'
                 }
             }
         }

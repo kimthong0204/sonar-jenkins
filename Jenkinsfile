@@ -3,8 +3,10 @@ pipeline{
 
     stages{
         stage('Scan') {
-            withSonarQubeEnv(installationName: 'SonarQubeScanner') {
-                sh './mvw clean verify'
+            steps{
+                withSonarQubeEnv(installationName: 'SonarQubeScanner') {
+                    sh './mvw clean verify'
+                }
             }
         }
     }

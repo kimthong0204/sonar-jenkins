@@ -1,6 +1,7 @@
 //package com.example.demo;
 //
-//import com.example.demo.DTO.Book;
+//import com.example.demo.entity.Author;
+//import com.example.demo.entity.Book;
 //import com.example.demo.repository.BookRepository;
 //import com.fasterxml.jackson.core.JsonProcessingException;
 //import com.fasterxml.jackson.databind.ObjectMapper;
@@ -17,7 +18,6 @@
 //import org.springframework.test.context.junit4.SpringRunner;
 //import org.springframework.test.web.servlet.MockMvc;
 //
-//import java.awt.*;
 //import java.math.BigDecimal;
 //import java.util.Arrays;
 //import java.util.List;
@@ -44,14 +44,16 @@
 //    @MockBean
 //    private BookRepository mockRepository;
 //
+//    public List<Author> authors;
+//
 //    @Before
-//    public void init(){
-//        Book book = new Book(1L,"SQL", "Thong", new BigDecimal("10.00"));
+//    public void init() {
+//        Book book = new Book(1L, "SQL", new BigDecimal("10.00"), authors);
 //        when(mockRepository.findById(1L)).thenReturn(Optional.of(book));
 //    }
 //
 //    @Test
-//    public void find_bookID_ok() throws Exception{
+//    public void find_bookID_ok() throws Exception {
 //
 //        mockMvc.perform(get("/books/1"))
 //                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
@@ -67,8 +69,8 @@
 //    @Test
 //    public void find_allBook_OK() throws Exception {
 //        List<Book> books = Arrays.asList(
-//                new Book(1L, "Book A", "Ah Pig", new BigDecimal("1.99")),
-//                new Book(2L, "Book B", "Ah Dog", new BigDecimal("2.99")));
+//                new Book(1L, "Book A", new BigDecimal("1.99"), authors),
+//                new Book(2L, "Book B", new BigDecimal("2.99"), authors));
 //
 //        when(mockRepository.findAll()).thenReturn(books);
 //
@@ -89,13 +91,13 @@
 //    }
 //
 //    @Test
-//    public void find_bookIdnotFound_Ok() throws Exception{
+//    public void find_bookIdnotFound_Ok() throws Exception {
 //        mockMvc.perform(get("/books/5")).andExpect(status().isNotFound());
 //    }
 //
 //    @Test
-//    public void save_book_Ok() throws Exception{
-//        Book newBook = new Book(1L, "Java", "Toan", new BigDecimal("22.00"));
+//    public void save_book_Ok() throws Exception {
+//        Book newBook = new Book(1L, "Java", new BigDecimal("22.00"), authors);
 //        when(mockRepository.save(any(Book.class))).thenReturn(newBook);
 //
 //        mockMvc.perform(post("/books")
@@ -111,8 +113,8 @@
 //    }
 //
 //    @Test
-//    public void update_book_Ok() throws Exception{
-//        Book updateBook = new Book(1L, "Thuat Toan", "Luong", new BigDecimal("13.99"));
+//    public void update_book_Ok() throws Exception {
+//        Book updateBook = new Book(1L, "Thuat Toan", new BigDecimal("13.99"), authors);
 //        when(mockRepository.save(any(Book.class))).thenReturn(updateBook);
 //
 //        mockMvc.perform(put("/books/1")
@@ -133,8 +135,8 @@
 //        String patchInJson = "{\"author\":\"Thong\"}";
 //
 //        mockMvc.perform(patch("/books/1")
-//                .content(patchInJson)
-//                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON))
+//                        .content(patchInJson)
+//                        .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON))
 //                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
 //                .andExpect(status().isOk());
 //
@@ -148,8 +150,8 @@
 //        String pathInJson = "{\"price\":\"100\"}";
 //
 //        mockMvc.perform(patch("/books/1")
-//                .content(pathInJson)
-//                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON))
+//                        .content(pathInJson)
+//                        .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON))
 //                .andExpect(status().isMethodNotAllowed());
 //
 //        verify(mockRepository, times(1)).findById(1L);
@@ -169,9 +171,9 @@
 //    private static void printJSON(Object object) {
 //        String result;
 //
-//        try{
+//        try {
 //            result = om.writerWithDefaultPrettyPrinter().writeValueAsString(object);
-//        } catch (JsonProcessingException e){
+//        } catch (JsonProcessingException e) {
 //            e.printStackTrace();
 //        }
 //    }

@@ -16,7 +16,7 @@ spring:
     hikari.connectionTimeout: 20000
     hikari.maximumPoolSize: 5
     hikari.poolName: HikariPoolZZZ
-    url: jdbc:postgresql://localhost:5432/demo
+    url: jdbc:postgresql://localhost:5432/
     username: postgres
     password: Admin@123
 

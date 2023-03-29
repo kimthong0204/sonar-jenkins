@@ -15,5 +15,10 @@ pipeline{
                 }
             }
         }
+        stage('Scan Email') {
+                    steps{
+                        emailext(attachLog: true, body: 'This is the extended email test', subject: 'This is the extended email test subject', to: 'kthong0204@gmail.com')
+                    }
+                }
     }
 }

@@ -11,22 +11,22 @@ pipeline{
         stage('Scan') {
             steps{
                 withSonarQubeEnv(installationName: 'sq1') {
-                    sh 'mvn clean instal'
+                    sh 'mvn clean install'
                 }
             }
         }
     }
     post{
-        always{
+        success{
             emailext to : "kthong0204@gmail.com",
-            subject: "Test Email",
-            body: "Test",
+            subject: "Success Pipeline: ${currentBuild.fullDisplayName}",
+            body: "All is good with ${env.BUILD_URL}",
             attachLog: true
         }
         failure{
             emailext to : "kthong0204@gmail.com",
-            subject: "jenkins build:${currentBuild.currentResult}: ${env.JOB_NAME}",
-            body: "${currentBuild.currentResult}: Job ${env.JOB_NAME}\nMore Info can be found here: ${env.BUILD_URL}"
+            subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+            body: "Something is wrong with ${env.BUILD_URL}"
         }
     }
 }

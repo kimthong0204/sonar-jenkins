@@ -15,10 +15,18 @@ pipeline{
                 }
             }
         }
-        stage('Scan Email') {
-                    steps{
-                        emailext(attachLog: true, body: 'This is the extended email test', subject: 'This is the extended email test subject', to: 'kthong0204@gmail.com')
-                    }
-                }
+    }
+    post{
+        always{
+            emailext to : "kthong0204@gmail.com",
+            subject: "Test Email",
+            body: "Test",
+            attachLog: true
+        }
+        failure{
+            emailext to : "kthong0204@gmail.com",
+            subject: "jenkins build:${currentBuild.currentResult}: ${env.JOB_NAME}",
+            body: "${currentBuild.currentResult}: Job ${env.JOB_NAME}\nMore Info can be found here: ${env.BUILD_URL}"
+        }
     }
 }
